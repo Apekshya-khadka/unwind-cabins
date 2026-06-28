@@ -21,7 +21,7 @@ const cabinGroups = [
 const inspireGroups = [
   { heading: "Explore nature", links: ["Hiking trails", "Swimming", "Fishing", "Boating", "Cycling"] },
   { heading: "Rest, relax and re-set", links: ["Spa treatments", "Hot tubs", "Nature Trails"] },
-  { heading: "Great food and drink", links: ["Pubs", "Resturants", "Food markets", "Picnics"] },
+  { heading: "Great food and drink", links: ["Pubs", "Restaurants", "Food markets", "Picnics"] },
 ];
 
 const forYouLinks = [
@@ -56,31 +56,27 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-ink text-white pt-16 pb-8">
+    <footer className="bg-ink text-white pt-12 md:pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-          {/* About us */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-10">
           <div>
-            <h4 className="text-mint font-semibold mb-4">About us</h4>
-            <ul className="space-y-2 text-white/80 text-sm">
+            <h4 className="text-mint font-semibold mb-3 md:mb-4 text-sm md:text-base">About us</h4>
+            <ul className="space-y-2 text-white/80 text-xs md:text-sm">
               {aboutLinks.map((l) => (
                 <li key={l.label}><Link to={l.to} className="hover:text-white">{l.label}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Our cabins */}
           <div>
-            <h4 className="text-mint font-semibold mb-4">Our cabins</h4>
+            <h4 className="text-mint font-semibold mb-3 md:mb-4 text-sm md:text-base">Our cabins</h4>
             {cabinGroups.map((g) => (
-              <div key={g.heading} className="mb-6">
-                <p className="font-semibold text-white/90 mb-2">{g.heading}</p>
-                <ul className="space-y-2 text-white/80 text-sm">
+              <div key={g.heading} className="mb-4 md:mb-6">
+                <p className="font-semibold text-white/90 mb-1 md:mb-2 text-xs md:text-sm">{g.heading}</p>
+                <ul className="space-y-1 md:space-y-2 text-white/80 text-xs md:text-sm">
                   {g.links.map((l) => (
                     <li key={l}>
-                      <Link to={`/cabins?search=${encodeURIComponent(l)}`} className="hover:text-white">
-                        {l}
-                      </Link>
+                      <Link to={`/cabins?search=${encodeURIComponent(l)}`} className="hover:text-white">{l}</Link>
                     </li>
                   ))}
                 </ul>
@@ -88,18 +84,15 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Get inspired */}
-          <div>
-            <h4 className="text-mint font-semibold mb-4">Get inspired</h4>
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="text-mint font-semibold mb-3 md:mb-4 text-sm md:text-base">Get inspired</h4>
             {inspireGroups.map((g) => (
-              <div key={g.heading} className="mb-6">
-                <p className="font-semibold text-white/90 mb-2">{g.heading}</p>
-                <ul className="space-y-2 text-white/80 text-sm">
+              <div key={g.heading} className="mb-4 md:mb-6">
+                <p className="font-semibold text-white/90 mb-1 md:mb-2 text-xs md:text-sm">{g.heading}</p>
+                <ul className="space-y-1 md:space-y-2 text-white/80 text-xs md:text-sm">
                   {g.links.map((l) => (
                     <li key={l}>
-                      <Link to={`/activities/${slugify(l)}`} className="hover:text-white">
-                        {l}
-                      </Link>
+                      <Link to={`/activities/${slugify(l)}`} className="hover:text-white">{l}</Link>
                     </li>
                   ))}
                 </ul>
@@ -107,21 +100,18 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* For you and yours */}
           <div>
-            <p className="font-semibold text-white/90 mb-2 invisible md:visible">&nbsp;</p>
-            <p className="font-semibold text-white/90 mb-2">For you and yours</p>
-            <ul className="space-y-2 text-white/80 text-sm">
+            <h4 className="text-mint font-semibold mb-3 md:mb-4 text-sm md:text-base">For you</h4>
+            <ul className="space-y-2 text-white/80 text-xs md:text-sm">
               {forYouLinks.map((l) => (
                 <li key={l.label}><Link to={l.to} className="hover:text-white">{l.label}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Support */}
           <div>
-            <h4 className="text-mint font-semibold mb-4">Support</h4>
-            <ul className="space-y-2 text-white/80 text-sm">
+            <h4 className="text-mint font-semibold mb-3 md:mb-4 text-sm md:text-base">Support</h4>
+            <ul className="space-y-2 text-white/80 text-xs md:text-sm">
               {supportLinks.map((l) => (
                 <li key={l.label}><Link to={l.to} className="hover:text-white">{l.label}</Link></li>
               ))}
@@ -129,25 +119,25 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16">
-          <h4 className="text-mint font-semibold text-lg">Sign up to our Newsletter</h4>
-          <p className="text-white/70 mt-2 max-w-xl">
+        <div className="mt-12 md:mt-16">
+          <h4 className="text-mint font-semibold text-base md:text-lg">Sign up to our Newsletter</h4>
+          <p className="text-white/70 mt-2 max-w-xl text-sm md:text-base">
             For a weekly curated collection of 3 things you can watch, read or listen to
             switch off from the busy everyday.
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mt-5 max-w-2xl">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-5 max-w-2xl">
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="james@thegaintpeach.com"
-              className="flex-1 rounded-md px-4 py-3 text-navy outline-none"
+              placeholder="your@email.com"
+              className="flex-1 rounded-md px-4 py-3 text-navy outline-none text-sm"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="bg-gold text-navy font-medium px-6 py-3 rounded-md hover:bg-gold/90 transition-colors disabled:opacity-60"
+              className="bg-gold text-navy font-medium px-5 py-3 rounded-md hover:bg-gold/90 transition-colors disabled:opacity-60 text-sm whitespace-nowrap"
             >
               {status === "loading" ? "Joining…" : "Join the mailing list"}
             </button>
@@ -157,22 +147,20 @@ export default function Footer() {
           )}
         </div>
 
-        <hr className="border-white/10 mt-12" />
+        <hr className="border-white/10 mt-10 md:mt-12" />
 
-        <div className="flex items-center justify-between flex-wrap gap-4 mt-6">
-          <p className="font-display text-xl font-bold">
-            <Link to="/">
-              <span className="text-white">UNWIND</span>
-              <span className="text-mint">CABINS</span>
-            </Link>
-          </p>
-          <p className="text-white/60 text-sm">© 2026 UnwindCabins</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+          <Link to="/" className="font-display text-lg md:text-xl font-bold">
+            <span className="text-white">UNWIND</span>
+            <span className="text-mint">CABINS</span>
+          </Link>
+          <p className="text-white/60 text-xs md:text-sm">© 2026 UnwindCabins</p>
           <div className="flex items-center gap-4 text-white/70">
-            <Linkedin size={18} />
-            <Twitter size={18} />
-            <Facebook size={18} />
-            <Instagram size={18} />
-            <Youtube size={18} />
+            <Linkedin size={16} />
+            <Twitter size={16} />
+            <Facebook size={16} />
+            <Instagram size={16} />
+            <Youtube size={16} />
           </div>
         </div>
       </div>
