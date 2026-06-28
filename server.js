@@ -5,8 +5,7 @@ const cors = require("cors");
 
 const app = express();
 
-// ── CORS ─────────────────────────────────────────────────────────────────────
-// Allow requests from the frontend origin (set FRONTEND_URL in Render env vars)
+// ── CORS ──────────────────────────────────────────────────────────────────────
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
@@ -17,6 +16,9 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (curl, Postman, server-to-server)
       if (!origin) return callback(null, true);
+      // Allow any vercel.app URL permanently (fixes changing Vercel URLs)
+      if (origin.endsWith(".vercel.app")) return callback(null, true);
+      // Allow explicitly set FRONTEND_URL and localhost
       if (allowedOrigins.includes(origin)) return callback(null, true);
       callback(new Error(`CORS blocked: ${origin}`));
     },
@@ -29,9 +31,9 @@ app.use(express.json());
 // ── Database ──────────────────────────────────────────────────────────────────
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
+  .then(() => console.log(" MongoDB connected"))
   .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
+    console.error(" MongoDB connection error:", err.message);
     process.exit(1);
   });
 
@@ -58,4 +60,4 @@ app.use((err, _req, res, _next) => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(` Server running on port ${PORT}`));
